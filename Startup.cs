@@ -15,6 +15,8 @@ namespace MyCourse
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();     //aggiunge i servizi richiesti ad esempio: un componente Controller factory che ha lo scopo di costruire un controller
+                                    //oppure il componente ControllerActionInvocher che ha lo scopo di trovare e di eseguire delle action
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,10 +26,15 @@ namespace MyCourse
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
-            app.Run(async (context) =>
+            //app.UseMvcWithDefaultRoute();
+
+            app.UseMvc(routeBuilder => 
             {
-                await context.Response.WriteAsync("Hello World!");
+                //  richiesta: /courses/detail/5   (controller,action,id)
+                routeBuilder.MapRoute("default", "{controller=Home}/{action=Index}/{id?}" );
+                //se in una richiesta mancano i frammenti allora di default usa Home, e come action usa Index, id invece è opzionale (?) cioè può anche non esserci
             });
         }
     }
