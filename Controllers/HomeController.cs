@@ -6,7 +6,7 @@ namespace MyCourse.Controllers
     {
         public IActionResult Index()         //definiamo un Action di default che deve chiamarsi Index
         {
-            return Content("Sono la index della home");
+            return View();
         }
     }
 }
