@@ -1,0 +1,6 @@
+{
+"browserSync.config": {
+    "proxy" : "localhost:5000",
+    "files" : ["Views/**/*.cshtml", "wwwroot/**/*"]       // gli asterischi significano vai ad osservare le views a qualsiasi livello di
+}                                                         //profondità guarda i file con estensione cshtml
+}                               //il browsersync aggiorna le pagine (solo delle view) collegandosi a un server proxy (sulla porta 3000)
